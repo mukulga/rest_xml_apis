@@ -15,8 +15,6 @@
  * limitations under the License.
 -->
 
-@author : Mukul Gandhi <mukulg@apache.org>
-
 This project demonstrates, developing Java based REST APIs running as Spring Boot application,
 that consume and produce XML documents. Each API for this project, should have its own XML 
 schema document to validate XML document inputs for these APIs. This project demonstrates, using 
