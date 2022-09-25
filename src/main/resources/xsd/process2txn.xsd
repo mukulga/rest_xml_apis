@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name="ArithExpr">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="a" type="xs:integer"/>
+            <xs:element name="b" type="xs:integer"/>
+            <xs:element name="sum" type="xs:integer"/>
+            <xs:element name="mult" type="xs:integer"/>
+         </xs:sequence>
+         <xs:assert test="a + b = sum"/>
+         <xs:assert test="a * b = mult"/>
+      </xs:complexType>
+   </xs:element>
+   
+</xs:schema>

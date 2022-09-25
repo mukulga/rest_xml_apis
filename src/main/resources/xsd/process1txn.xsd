@@ -1,0 +1,14 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+   <xs:element name="list">
+      <xs:complexType>
+         <xs:sequence>
+            <xs:element name="item" type="xs:positiveInteger" maxOccurs="unbounded"/>
+         </xs:sequence>
+         <xs:attribute name="noOfItems" type="xs:positiveInteger"/>
+         <xs:assert test="count(item) = @noOfItems"/>
+         <xs:assert test="count(item) = count(distinct-values(item))"/>
+      </xs:complexType>
+   </xs:element>
+   
+</xs:schema>

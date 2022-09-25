@@ -1,0 +1,39 @@
+<!--
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+-->
+
+@author : Mukul Gandhi <mukulg@apache.org>
+
+This project demonstrates, developing Java based REST APIs running as Spring Boot application,
+that consume and produce XML documents. Each API for this project, should have its own XML 
+schema document to validate XML document inputs for these APIs. This project demonstrates, using 
+Apache XercesJ's XML Schema 1.1 validator, to validate API XML inputs with XML Schema documents.
+
+Following are few important steps, that need to be performed, to setup and run a Java Maven build 
+project for this demonstration, using the latest version of Apache XercesJ (currently v 2.12.2):
+
+1) Download the Apache Xerces, from https://xerces.apache.org/mirrors.cgi into a local folder, and copy
+all the XercesJ jars into a local folder (for e.g, d:/eclipseWorkspaces/spring_boot_rest_xml_apis/rest_xml_apis/xerceslib
+as illustrated within this project).
+
+2) Run the batch file mvn_xerces_init.bat (provided by this project, for the windows platform) locally, that will install 
+the XercesJ jars into the local Maven repository. This step shall allow, building a Java .war file containing 
+XercesJ jar dependencies, and the generated .war file can deployed to any external J2EE application server. This step 
+shall be helpful, since XercesJ project currently does not provides its jars officially on Maven central.
+
+3) As a test, assuming that this Spring Boot REST API project is running locally, few test results are available (for two 
+sample APIs provided by this project) within the folder test_results of this project (that depict sample Postman API 
+invocations. More information about Postman API platform is available at https://www.postman.com/). 
