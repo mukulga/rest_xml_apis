@@ -29,7 +29,7 @@ as illustrated within this project).
 
 2) Run the batch file mvn_xerces_init.bat (provided by this project, for the windows platform) locally, that will install 
 the XercesJ jars into the local Maven repository. This step shall allow, building a Java .war file containing 
-XercesJ jar dependencies, and the generated .war file can deployed to any external J2EE application server. This step 
+XercesJ jar dependencies, and the generated .war file can be deployed to any J2EE application server. This step 
 shall be helpful, since XercesJ project currently does not provides its jars officially on Maven central.
 
 3) As a test, assuming that this Spring Boot REST API project is running locally, few test results are available (for two 
