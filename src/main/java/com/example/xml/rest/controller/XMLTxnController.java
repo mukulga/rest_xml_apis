@@ -41,7 +41,10 @@ public class XMLTxnController {
 			Document inpXmlDocument = xsValidator.getXmlDocument(inpXmlStr, xmlTxnAPIErrorHandler);
 			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument, 
 					                                                   xsdFile, xmlTxnAPIErrorHandler);
-			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, inpXmlDocument);
+			// do any calculations on the XML input data, which can be appended to result
+			String txnEvalResult = "<output><item id=\"101\">not available</item><item id=\"103\">"
+					                          + "not available</item></output>";
+			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, txnEvalResult);
 		} catch (Exception ex) {
 			resultXmlStr = "<response><status>failure</status><errorMessages><mesg>" + ex.getMessage() + "</mesg>"
 	                                      + "</errorMessages></response>";
@@ -63,7 +66,9 @@ public class XMLTxnController {
 			Document inpXmlDocument = xsValidator.getXmlDocument(inpXmlStr, xmlTxnAPIErrorHandler);
 			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument, 
 					                                                  xsdFile, xmlTxnAPIErrorHandler);
-			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, inpXmlDocument);
+			// do any calculations on the XML input data, which can be appended to result
+			String txnEvalResult = "";
+			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, txnEvalResult);
 		} catch (Exception ex) {
 			resultXmlStr = "<response><status>failure</status><errorMessages><mesg>" + ex.getMessage() + "</mesg>"
 					                   + "</errorMessages></response>";
@@ -72,8 +77,9 @@ public class XMLTxnController {
 		return resultXmlStr;
 	}
 
+	// a common XML result serializer, for all the apis defined within this controller
 	private String constructResultXmlStr(Map<String, List> xmlParseAndValidationMessages,
-			                                     Document inpXmlDocument) {
+			                                     String txnEvalResult) {
 		String resultXmlStr = "";
 		String warningXmlFrag = "";
 		
@@ -88,9 +94,9 @@ public class XMLTxnController {
 
 		if ((xmlParseAndValidationMessages.get("errors")).size() == 0) {
 			if (warningXmlFrag.length() > 0) {
-				resultXmlStr = "<response><status>success</status>" + warningXmlFrag;
+				resultXmlStr = "<response><status>success</status>" + warningXmlFrag + txnEvalResult;
 			} else {
-				resultXmlStr = "<response><status>success</status>";
+				resultXmlStr = "<response><status>success</status>" + txnEvalResult;
 			}
 		} else {
 			List<String> errorList = xmlParseAndValidationMessages.get("errors");
