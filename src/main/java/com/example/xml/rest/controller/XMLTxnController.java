@@ -24,7 +24,7 @@ public class XMLTxnController {
 
 	@Autowired
 	ResourceLoader resourceLoader;
-	
+
 	@Value("${show_xml_and_xsd_warnings}")
 	private boolean showXmlAndXsdWarnings;
 
@@ -32,16 +32,16 @@ public class XMLTxnController {
 	public String doProcess1(@RequestBody String inpXmlStr) throws Exception {
 
 		String resultXmlStr = null;
-		
+
 		XmlTxnAPIErrorHandler xmlTxnAPIErrorHandler = new XmlTxnAPIErrorHandler();
 
 		try {
 			File xsdFile = (resourceLoader.getResource("classpath:xsd/process1txn.xsd")).getFile();
 
 			Document inpXmlDocument = xsValidator.getXmlDocument(inpXmlStr, xmlTxnAPIErrorHandler);
-			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument, 
+			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument,
 					                                                   xsdFile, xmlTxnAPIErrorHandler);
-			// do any calculations on the XML input data, which can be appended to result
+			// do any calculations on the XML input data, that can be appended to result
 			String txnEvalResult = "<output><item id=\"101\">not available</item><item id=\"103\">"
 					                          + "not available</item></output>";
 			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, txnEvalResult);
@@ -57,16 +57,16 @@ public class XMLTxnController {
 	public String doProcess2(@RequestBody String inpXmlStr) throws Exception {
 
 		String resultXmlStr = null;
-		
+
 		XmlTxnAPIErrorHandler xmlTxnAPIErrorHandler = new XmlTxnAPIErrorHandler();
 
 		try {
 			File xsdFile = (resourceLoader.getResource("classpath:xsd/process2txn.xsd")).getFile();
 
 			Document inpXmlDocument = xsValidator.getXmlDocument(inpXmlStr, xmlTxnAPIErrorHandler);
-			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument, 
+			Map<String, List> xmlParseAndValidationMessages = xsValidator.validate(inpXmlDocument,
 					                                                  xsdFile, xmlTxnAPIErrorHandler);
-			// do any calculations on the XML input data, which can be appended to result
+			// do any calculations on the XML input data, that can be appended to result
 			String txnEvalResult = "";
 			resultXmlStr = constructResultXmlStr(xmlParseAndValidationMessages, txnEvalResult);
 		} catch (Exception ex) {
@@ -82,7 +82,7 @@ public class XMLTxnController {
 			                                     String txnEvalResult) {
 		String resultXmlStr = "";
 		String warningXmlFrag = "";
-		
+
 		List<String> warningList = xmlParseAndValidationMessages.get("warnings");
 		if (showXmlAndXsdWarnings && warningList.size() > 0) {
 			warningXmlFrag = "<warningMessages>";
@@ -107,7 +107,7 @@ public class XMLTxnController {
 			errorXmlFrag += "</errorMessages>";
 			resultXmlStr = "<response><status>failure</status>" + errorXmlFrag;
 			if (warningXmlFrag.length() > 0) {
-				resultXmlStr += warningXmlFrag; 
+				resultXmlStr += warningXmlFrag;
 			}
 		}
 
