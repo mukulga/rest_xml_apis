@@ -24,13 +24,12 @@ Following are few important steps, that need to be performed, to setup and run a
 project for this demonstration, using the latest version of Apache XercesJ (currently v 2.12.2):
 
 1) Download the Apache Xerces, from https://xerces.apache.org/mirrors.cgi into a local folder, and copy
-all the XercesJ jars into a local folder (for e.g, d:/eclipseWorkspaces/spring_boot_rest_xml_apis/rest_xml_apis/xerceslib
-as illustrated within this project).
+all the XercesJ jars into a local folder (for e.g, d:\xerceslib as illustrated within this project).
 
 2) Run the batch file mvn_xerces_init.bat (provided by this project, for the windows platform) locally, that will install 
-the XercesJ jars into the local Maven repository. This step shall allow, building a Java .war file containing 
+the XercesJ jars into the local Maven repository. This step shall allow, building a Java .war (web archive) file containing 
 XercesJ jar dependencies, and the generated .war file can be deployed to any J2EE application server. This step 
-shall be helpful, since XercesJ project currently does not provides its jars officially on Maven central.
+shall be helpful, since XercesJ project currently does not provides its jars officially on Maven central repository.
 
 3) As a test, assuming that this Spring Boot REST API project is running locally, few test results are available (for two 
 sample APIs provided by this project) within the folder test_results of this project (that depict sample Postman API 
